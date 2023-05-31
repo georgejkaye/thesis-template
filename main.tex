@@ -53,7 +53,7 @@
   \declaretheorem[sibling=theorem,style=definition]{definition}
   \declaretheorem[sibling=theorem,style=definition]{example}
   \declaretheorem[sibling=theorem,style=remark]{remark}
-  % Now we set the shading using the tcolorbox package.
+  % Now we set the shading using the tcolorenvironment package.
   %
   % The related thmtools' option "shaded" and the package mdframed seem to have
   % issues: the former does not allow for page breaks in shaded environments and
@@ -71,15 +71,19 @@
       add to width=1.1mm,
       enlarge left by=-0.6mm}
   }
+  \newcommand{\colorenvironment}[2]{%
+      \tcolorboxenvironment{#1}{shadedenv={#2}}
+      \addtotheorempreheadhook[#1]{\tikzcdset{background color=#2}}
+  }
   %
-  \tcolorboxenvironment{theorem}    {shadedenv={ShadeOfPurple}}
-  \tcolorboxenvironment{lemma}      {shadedenv={ShadeOfPurple}}
-  \tcolorboxenvironment{proposition}{shadedenv={ShadeOfPurple}}
-  \tcolorboxenvironment{corollary}  {shadedenv={ShadeOfPurple}}
-  \tcolorboxenvironment{definition} {shadedenv={ShadeOfYellow}}
-  \tcolorboxenvironment{example}    {shadedenv={ShadeOfGreen}}
-  \tcolorboxenvironment{remark}     {shadedenv={ShadeOfBrown}}
-  \tcolorboxenvironment{proof}      {shadedenv={ShadeOfGray}}
+  \colorenvironment{theorem}{ShadeOfPurple}
+  \colorenvironment{lemma}{ShadeOfPurple}
+  \colorenvironment{proposition}{ShadeOfPurple}
+  \colorenvironment{corollary}{ShadeOfPurple}
+  \colorenvironment{definition}{ShadeOfYellow}
+  \colorenvironment{example}{ShadeOfGreen}
+  \colorenvironment{remark}{ShadeOfBrown}
+  \colorenvironment{proof}{ShadeOfGray}
 }{% Use closing symbols if we don't have colours
   \declaretheorem[sibling=equation]{theorem}
   \declaretheorem[sibling=theorem]{lemma,proposition,corollary}
